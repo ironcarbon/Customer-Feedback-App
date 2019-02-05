@@ -5,6 +5,7 @@ const userSchema = new Schema({
     googleId: String
 });
 
-mongoose.model('users', userSchema);
+mongoose.model('users', userSchema);  //first model class
 
-//first model class
+
+
