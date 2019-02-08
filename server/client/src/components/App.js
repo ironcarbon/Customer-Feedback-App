@@ -12,11 +12,13 @@ const App = () => {
         <div>
             <BrowserRouter>
                 <div>
+                    <Header />
                     <Route path="/" exact component={Landing} />
-                    <Route path="/surveys" component={Dashboard} />
+                    <Route path="/surveys" exact component={Dashboard} />
+                    <Route path="/surveys/new" component={SurveyNew} />
                 </div>
             </BrowserRouter>
-        </div>
+        </div >
     );
 };
 
