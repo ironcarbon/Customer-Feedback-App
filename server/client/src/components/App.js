@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { Component } from 'react';
 import { BrowserRouter, Route } from 'react-router-dom';
 
 import Header from './Header';
@@ -7,19 +7,25 @@ const SurveyNew = () => <h2>SurveyNew</h2>
 const Landing = () => <h2>Landing</h2>
 
 
-const App = () => {
-    return (
-        <div>
-            <BrowserRouter>
-                <div className="container">
-                    <Header />
-                    <Route path="/" exact component={Landing} />
-                    <Route path="/surveys" exact component={Dashboard} />
-                    <Route path="/surveys/new" component={SurveyNew} />
-                </div>
-            </BrowserRouter>
-        </div >
-    );
-};
+class App extends Component {
+    render() {
+        return (
+            <div>
+                <BrowserRouter>
+                    <div className="container">
+                        <Header />
+                        <Route path="/" exact component={Landing} />
+                        <Route path="/surveys" exact component={Dashboard} />
+                        <Route path="/surveys/new" component={SurveyNew} />
+                    </div>
+                </BrowserRouter>
+            </div >
+
+        )
+    }
+
+}
+
+
 
 export default App;
