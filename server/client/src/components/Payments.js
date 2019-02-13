@@ -4,7 +4,6 @@ import StripeCheckout from 'react-stripe-checkout';
 
 class Payments extends Component {
     render() {
-        debugger;
 
         return (
             <StripeCheckout
@@ -15,3 +14,5 @@ class Payments extends Component {
         )
     }
 }
+
+export default Payments;
