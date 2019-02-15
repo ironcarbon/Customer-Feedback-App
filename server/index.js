@@ -38,7 +38,7 @@ if (process.env.NODE_ENV === 'production') {
     app.get('*', (req, res) => {
         res.sendFile(path.resolve(__dirname, 'client', 'build', 'index.html'));
     })
-
+    //it means if someone makes a request for a route that express don't understand just serve index.html
 }
 
 const PORT = process.env.PORT || 5000;
