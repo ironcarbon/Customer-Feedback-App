@@ -48,7 +48,7 @@
 // };
 
 
-/////////
+
 const _ = require('lodash');
 const Path = require('path-parser').default;
 const { URL } = require('url');
@@ -67,7 +67,7 @@ module.exports = app => {
 
     app.post('/api/surveys/webhooks', (req, res) => {
 
-        const events = _.chain(req.body)
+        _.chain(req.body)
             .map(({ email, url }) => {
                 const pathname = new URL(url).pathname;
                 const p = new Path('/api/surveys/:surveyId/:choice');
@@ -79,9 +79,20 @@ module.exports = app => {
             //console.log(events)
             .compact()
             .uniqBy('email', 'surveyId')
+            .each(({ surveyId, email, choice }) => {
+                Survey.updateOne({
+                    _id: surveyId,
+                    recipients: {
+                        $elemMath: { email: email, responded: false }
+                    }
+                }, {
+                        $inc: { [choice]: 1 },
+                        $set: { 'recipients.$.responded': true }
+                    }).exec();
+            })
             .value();
 
-        console.log(events);
+
 
         res.send({});
     });
